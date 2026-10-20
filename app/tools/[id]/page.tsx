@@ -1,0 +1,5 @@
+import {tools} from '@/lib/recommend';
+import {notFound} from 'next/navigation';
+import Link from 'next/link';
+export function generateStaticParams(){return tools.map(t=>({id:t.id}));}
+export default async function Page({params}:{params:Promise<{id:string}>}){const {id}=await params;const tool=tools.find(t=>t.id===id);if(!tool)notFound();return <div className="page detail"><Link href="/tools" className="text-link">← 返回工具资源库</Link><div className="summary"><span className="tag">{tool.category}</span><h1>{tool.name}</h1><p className="intro">{tool.description}</p><div className="meta">使用难度：{tool.difficulty} · 学段：{tool.stages.join(' / ')}（待核验）</div><p>费用类型：{tool.fee}</p><a className="button" href={tool.url} target="_blank" rel="noopener noreferrer">访问官方入口 ↗</a><p className="small">{tool.url}</p></div><section className="detail-section"><h2>适用场景</h2><p>{tool.tags.join('、')}。请结合学校要求与具体学情判断。</p><h2>主要限制</h2><p>{tool.limitations}</p><h2>分步骤上手指南</h2><ol>{tool.steps.map(step=><li key={step}>{step}</li>)}</ol><p className="small">以上为通用探索流程，具体按钮及产品操作路径待核验。</p></section><aside className="notice"><strong>信息核验说明</strong><p>{tool.verification}</p></aside></div>}

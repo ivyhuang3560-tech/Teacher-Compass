@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {recommend,validateTask,tools} from '../lib/recommend';
+test('rejects empty, short and overly long input',()=>{assert.ok(validateTask('  '));assert.ok(validateTask('课件'));assert.ok(validateTask('字'.repeat(501)));assert.equal(validateTask('我想制作课件'),'');});
+test('matches PPT case-insensitively and caps candidates at three',()=>{const r=recommend('小学 ppt 课件');assert.ok(r.results.length>0);assert.ok(r.results.length<=3);assert.equal(r.results[0].tool.id,'wps');assert.ok(r.constraints.includes('小学'));});
+test('policy task yields policy resources',()=>{const r=recommend('查询教育政策法规');assert.ok(r.results.length);assert.ok(r.results.every(x=>x.tool.category==='政策信息'));});
+test('unknown task has a true empty result',()=>{assert.equal(recommend('今天的天气怎么样').results.length,0);});
+test('free constraint never invents verified pricing',()=>{const r=recommend('免费试卷');assert.ok(r.constraints.some(c=>c.includes('无法保证')));assert.ok(r.results.every(x=>x.tool.fee.includes('待核验')));});
+test('ranking is deterministic and reasons explain keyword match',()=>{assert.deepEqual(recommend('初中试题练习'),recommend('初中试题练习'));assert.match(recommend('初中试题练习').results[0].reason,/试题/);});
+test('catalog has twelve unique HTTPS records with guides',()=>{assert.equal(tools.length,12);assert.equal(new Set(tools.map(t=>t.id)).size,12);for(const t of tools){assert.equal(new URL(t.url).protocol,'https:');assert.ok(t.steps.length>=3);assert.ok(t.limitations);}});
