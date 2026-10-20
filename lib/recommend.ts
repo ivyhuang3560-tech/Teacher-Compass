@@ -2,7 +2,7 @@ import records from '../data/tools.json';
 import { identifySafetyScenario, taskAliases } from './scenarios';
 export const tools = records;
 export type Tool = typeof records[number];
-export const categories = ['课件制作','教学设计','试题资源','课堂互动','班级管理','政策信息'];
+export const categories = ['课件制作','教学设计','试题资源','课堂互动','班级管理','政策信息','教育辅助','教师成长','多媒体处理','学术科研'];
 export const stages = ['小学','初中','高中'];
 export function validateTask(input: string) {
   if (input.trim().length < 4) return '请至少输入 4 个字，描述具体教学任务。';
@@ -21,8 +21,9 @@ export function recommend(input: string) {
   const ranked = tools.map(tool => {
     const matched = tool.tags.filter(tag => query.includes(tag.toLowerCase()));
     const intentMatch = intents.includes(tool.category);
-    const score = matched.length * 3 + (query.includes(tool.category) ? 4 : 0) + (intentMatch ? 4 : 0);
-    return {tool, score, reason: `匹配“${matched.join('、') || tool.category}”；${tool.description}`};
+    const nameMatch = query.includes(tool.name.toLowerCase());
+    const score = (nameMatch ? 12 : 0) + matched.length * 3 + (query.includes(tool.category) ? 4 : 0) + (intentMatch ? 4 : 0);
+    return {tool, score, reason: `匹配“${nameMatch ? tool.name : matched.join('、') || tool.category}”；${tool.description}`};
   }).filter(item => item.score > 0 && (!stage || item.tool.stages.includes(stage)))
     .sort((a,b) => b.score-a.score || (query.includes('简单') ? Number(a.tool.difficulty !== '入门')-Number(b.tool.difficulty !== '入门') : 0));
   // 受伤场景优先展示救助提示，不把课件或沟通工具作为处置建议。
