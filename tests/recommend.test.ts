@@ -54,3 +54,31 @@ test('tool name search gives exact resource priority',()=>{
   assert.equal(recommend('我想用 OBS Studio 录课').results[0].tool.id,'obs');
   assert.equal(recommend('想用 Notion 整理工作').results[0].tool.id,'notion');
 });
+test('student physical conflict is recognized without injury keywords',()=>{
+  for(const q of ['学生之间发生肢体冲突','班里两个学生打架了','同学在走廊互相推搡','学生打起来了']){
+    const r=recommend(q);
+    assert.equal(r.task,'学生肢体冲突与校园安全处置',q);
+    assert.equal(r.safety?.preparation,false,q);
+    assert.ok(r.safety.steps.some(s=>s.includes('学校安保')));
+    assert.ok(r.safety.steps.some(s=>s.includes('110')&&s.includes('120')));
+    assert.deepEqual(r.results.map(x=>x.tool.id),['moe','gov']);
+  }
+});
+test('conflict prevention is distinguished from active incidents',()=>{
+  const r=recommend('准备一个预防学生打架的主题班会');
+  assert.equal(r.task,'学生冲突预防与安全教育');
+  assert.equal(r.safety?.preparation,true);
+});
+test('injury during conflict retains medical escalation guidance',()=>{
+  const r=recommend('学生打架受伤了，大量出血');
+  assert.equal(r.safety?.preparation,false);
+  assert.ok(r.safety?.steps.some(s=>s.includes('120')));
+});
+test('active injury or fighting takes priority over lesson material words',()=>{
+  assert.equal(recommend('正在展示课件，学生打起来了').safety?.preparation,false);
+  assert.equal(recommend('安全教育课上学生受伤了').safety?.preparation,false);
+});
+test('unrelated conflict terms do not trigger school violence guidance',()=>{
+  assert.equal(recommend('安装软件发生版本冲突').safety,null);
+  assert.equal(recommend('学生的PPT颜色冲突怎么改').safety,null);
+});

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import TaskForm from '@/components/TaskForm';
 import ToolCard from '@/components/ToolCard';
+import { schoolScenarios } from '@/lib/school-scenarios';
 import { recommend, validateTask } from '@/lib/recommend';
 
 export default async function Page({ searchParams }: {
@@ -14,7 +15,17 @@ export default async function Page({ searchParams }: {
     <div className="eyebrow">TASK TO TOOLS</div>
     <h1>为你的下一步，找到方向</h1>
     <p className="intro">通过本地情境规则、关键词和学段筛选识别需求，最多推荐 3 个资源；不调用大模型。</p>
-    <TaskForm />
+    <TaskForm key={q} initialValue={q} />
+    <details className="scenario-browser">
+      <summary>浏览 {schoolScenarios.length + 2} 类常见校园情境，点击示例试试</summary>
+      <p>覆盖常见事件及两类受伤、肢体冲突提示，不代表穷尽。请勿输入学生姓名等个人信息。</p>
+      {[...new Set(schoolScenarios.map(s => s.group))].map(group => <section key={group}>
+        <h3>{group}</h3><div className="scenario-links">
+          {schoolScenarios.filter(s=>s.group===group).map(s=><Link key={s.id} href={'/recommend?q='+encodeURIComponent(s.example)}>{s.example} ↗</Link>)}
+        </div>
+      </section>)}
+      <div className="scenario-links">{['学生之间发生肢体冲突','我的学生在课堂上受伤了'].map(example=><Link key={example} href={'/recommend?q='+encodeURIComponent(example)}>{example} ↗</Link>)}</div>
+    </details>
     {q && error ? <p role="alert" className="notice">{error}</p> : null}
     {result ? <>
       <section className="summary">
@@ -30,7 +41,15 @@ export default async function Page({ searchParams }: {
         <ol>{result.safety.steps.map(step => <li key={step}>{step}</li>)}</ol>
         <p>{result.safety.note}</p>
       </section>}
-      {result.safety && <h2>后续政策查询入口</h2>}
+      {result.guidance && <section className={result.guidance.priority ? 'safety-panel' : 'guidance-panel'} aria-labelledby="guidance-heading">
+        <span className="tag">{result.guidance.priority ? '优先核实安全与报告' : result.guidance.group}</span>
+        <h2 id="guidance-heading">{result.guidance.heading}</h2>
+        <ol>{result.guidance.steps.map(step=><li key={step}>{step}</li>)}</ol>
+        <p><strong>还需了解：</strong>{result.guidance.question}</p>
+        <p className="small">这是一般情境参考，未逐条核验政策依据。以学校流程及当地要求为准，不构成医疗、法律或心理诊断。规则可能遗漏或误判；如同时存在其他风险，请优先寻求现场支持。</p>
+      </section>}
+      {(result.safety || result.guidance?.priority) && <h2>后续政策查询入口</h2>}
+      {result.guidance && !result.guidance.priority && <h2>可辅助后续工作的资源</h2>}
       {result.results.length ? <div className="tool-grid">
         {result.results.map((r, i) => <ToolCard key={r.tool.id} tool={r.tool} index={i} reason={r.reason} />)}
       </div> : <div className="empty">
