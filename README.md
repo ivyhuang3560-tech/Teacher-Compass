@@ -2,7 +2,7 @@
 
 面向入职三年内中小学教师的本地信息与资源导航。基于原 Next.js App Router / TypeScript / Tailwind 项目增量开发，不需要登录、数据库或外部 AI API Key。
 
-本轮对应 [Issue #1](https://github.com/ivyhuang3560-tech/Teacher-Compass/issues/1)，在 `feat/issue-1-mvp-v02` 分支实施，供 PR 审阅；不得将分支交付视为已合并或上线。
+本轮对应 [Issue #1](https://github.com/ivyhuang3560-tech/Teacher-Compass/issues/1)，在 `feat/issue-1-mvp-v02` 分支实施，已创建 [PR #2](https://github.com/ivyhuang3560-tech/Teacher-Compass/pull/2) 供审阅；尚未合并 main 或公开上线。
 
 产品需求、迭代原因、技术证据、风险及体验反馈见 [CHANGELOG.md](CHANGELOG.md)。每轮按“明确指标 → 开发与技术验证 → 负责人体验 → 提问并确认反馈 → 记录 → 讨论下一步”推进。未收到确认的体验不记为验收通过。
 

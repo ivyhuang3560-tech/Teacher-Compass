@@ -1,6 +1,6 @@
 # V0.2 技术验收与负责人体验卡
 
-日期：2026-10-21（北京时间）。分支：`feat/issue-1-mvp-v02`；对应 [Issue #1](https://github.com/ivyhuang3560-tech/Teacher-Compass/issues/1)。
+日期：2026-10-21（北京时间）。分支：`feat/issue-1-mvp-v02`；对应 [Issue #1](https://github.com/ivyhuang3560-tech/Teacher-Compass/issues/1)，审阅入口 [PR #2](https://github.com/ivyhuang3560-tech/Teacher-Compass/pull/2)。
 
 ## 开发前明确的验收口径
 
