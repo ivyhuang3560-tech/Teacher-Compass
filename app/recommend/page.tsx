@@ -12,7 +12,7 @@ export default async function Page({ searchParams }: {
   const error = validateTask(q);
   const result = error ? null : recommend(q);
   return <div className="page">
-    <div className="eyebrow">TASK TO TOOLS</div>
+    <Link className="text-link" href="/tools">← 返回工具导航</Link><div className="eyebrow">TASK TO TOOLS</div>
     <h1>为你的下一步，找到方向</h1>
     <p className="intro">通过本地情境规则、关键词和学段筛选识别需求，最多推荐 3 个资源；不调用大模型。</p>
     <TaskForm key={q} initialValue={q} />
