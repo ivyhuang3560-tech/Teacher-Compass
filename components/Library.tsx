@@ -1,5 +1,14 @@
-'use client';
-import {useState} from 'react';
-import {tools,categories,stages} from '@/lib/recommend';
+import Link from 'next/link';
+import {categories,stages} from '@/lib/recommend';
+import {filterTools} from '@/lib/tool-filters';
+import {searchError} from '@/lib/content';
+import {SelectFilter,EmptyState,listReturnUrl} from './ContentUI';
 import ToolCard from './ToolCard';
-export default function Library({initialCategory}:{initialCategory:string}){const [category,setCategory]=useState(categories.includes(initialCategory)?initialCategory:'');const [stage,setStage]=useState('');const [query,setQuery]=useState('');const filtered=tools.filter(t=>(!category||t.category===category)&&(!stage||t.stages.includes(stage))&&[t.name,t.category,t.description,...t.tags].join(' ').toLowerCase().includes(query.trim().toLowerCase()));return <><div className="filters"><label>关键词搜索<input type="search" placeholder="工具名称或任务关键词" value={query} onChange={e=>setQuery(e.target.value)}/></label><label>资源类别<select value={category} onChange={e=>setCategory(e.target.value)}><option value="">全部类别</option>{categories.map(c=><option key={c}>{c}</option>)}</select></label><label>适用学段<select value={stage} onChange={e=>setStage(e.target.value)}><option value="">全部学段</option>{stages.map(s=><option key={s}>{s}</option>)}</select></label><button className="reset" onClick={()=>{setCategory('');setStage('');setQuery('');}}>重置筛选</button></div><p className="small" aria-live="polite">找到 {filtered.length} 条资源 · 学段覆盖为初步整理，待核验</p>{filtered.length?<div className="tool-grid">{filtered.map(t=><ToolCard key={t.id} tool={t}/>)}</div>:<div className="empty"><h2>没有找到符合条件的资源</h2><p>请更换关键词或重置筛选。</p></div>}</>}
+import {param,type QueryParams} from '@/lib/content-types';
+export default function Library({params}:{params:QueryParams}){
+  const category=param(params,'category'),stage=param(params,'stage'),q=param(params,'q');
+  const error=searchError(q)||((category&&!categories.includes(category))||(stage&&!stages.includes(stage))?'筛选条件无效，请重置。':'');
+  const filtered=error?[]:filterTools({q,category,stage});
+  const returnTo=listReturnUrl('/tools',params);
+  return <><form action="/tools" className="filter-panel"><div className="filters"><label>关键词搜索<input type="search" name="q" defaultValue={q} placeholder="工具名称或任务关键词" maxLength={200}/></label><SelectFilter label="资源类别" name="category" options={categories} value={category}/><SelectFilter label="适用学段" name="stage" options={stages} value={stage}/><button className="button" type="submit">应用筛选</button><Link className="reset" href="/tools">重置全部</Link></div></form>{error&&<p role="alert" className="error">{error}</p>}<p className="result-count" aria-live="polite">找到 {filtered.length} 条资源 · 费用、学段和功能待核验</p>{filtered.length?<div className="tool-grid">{filtered.map(tool=><ToolCard key={tool.id} tool={tool} returnTo={returnTo}/>)}</div>:<EmptyState href="/tools">请更换关键词或减少筛选，也可以使用上方情境推荐描述任务。</EmptyState>}</>;
+}

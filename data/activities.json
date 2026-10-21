@@ -1,0 +1,226 @@
+[
+  {
+    "id": "lesson",
+    "title": "DEMO｜小学语文公开课（非真实活动）",
+    "category": "教学竞赛与公开课",
+    "region": "全国",
+    "stages": [
+      "小学"
+    ],
+    "subjects": [
+      "语文"
+    ],
+    "keywords": [
+      "公开课",
+      "观摩",
+      "磨课"
+    ],
+    "summary": "用于演示公开课筛选条件，不存在真实开放场次。",
+    "audience": "演示条件：希望了解相关主题的中小学教师，不代表真实招募对象。",
+    "requirements": [
+      "本条仅供筛选和页面演示，不可报名。",
+      "地区、学段和学科为示例条件；实际活动须以原始通知为准。"
+    ],
+    "startsAt": null,
+    "endsAt": null,
+    "registrationDeadline": null,
+    "registrationOpensAt": null,
+    "datesVerified": false,
+    "source": {
+      "mode": "demo",
+      "publisher": null,
+      "originalUrl": null,
+      "checkedAt": null,
+      "verification": "演示数据",
+      "note": "仅用于演示信息架构、检索与筛选。不是实际发布内容，不能作为法律依据、教育事实或报名通知。"
+    }
+  },
+  {
+    "id": "contest",
+    "title": "DEMO｜中学数学教学竞赛（非真实活动）",
+    "category": "教学竞赛与公开课",
+    "region": "广东省",
+    "stages": [
+      "初中",
+      "高中"
+    ],
+    "subjects": [
+      "数学"
+    ],
+    "keywords": [
+      "比赛",
+      "竞赛",
+      "赛课"
+    ],
+    "summary": "用于演示教学竞赛详情，不代表有赛事正在征集。",
+    "audience": "演示条件：希望了解相关主题的中小学教师，不代表真实招募对象。",
+    "requirements": [
+      "本条仅供筛选和页面演示，不可报名。",
+      "地区、学段和学科为示例条件；实际活动须以原始通知为准。"
+    ],
+    "startsAt": null,
+    "endsAt": null,
+    "registrationDeadline": null,
+    "registrationOpensAt": null,
+    "datesVerified": false,
+    "source": {
+      "mode": "demo",
+      "publisher": null,
+      "originalUrl": null,
+      "checkedAt": null,
+      "verification": "演示数据",
+      "note": "仅用于演示信息架构、检索与筛选。不是实际发布内容，不能作为法律依据、教育事实或报名通知。"
+    }
+  },
+  {
+    "id": "training",
+    "title": "DEMO｜新教师课堂教学研修（非真实活动）",
+    "category": "培训研修与讲座",
+    "region": "全国",
+    "stages": [
+      "小学",
+      "初中",
+      "高中"
+    ],
+    "subjects": [
+      "不限"
+    ],
+    "keywords": [
+      "培训",
+      "研修",
+      "讲座"
+    ],
+    "summary": "用于演示新教师研修需求匹配，不存在真实报名安排。",
+    "audience": "演示条件：希望了解相关主题的中小学教师，不代表真实招募对象。",
+    "requirements": [
+      "本条仅供筛选和页面演示，不可报名。",
+      "地区、学段和学科为示例条件；实际活动须以原始通知为准。"
+    ],
+    "startsAt": null,
+    "endsAt": null,
+    "registrationDeadline": null,
+    "registrationOpensAt": null,
+    "datesVerified": false,
+    "source": {
+      "mode": "demo",
+      "publisher": null,
+      "originalUrl": null,
+      "checkedAt": null,
+      "verification": "演示数据",
+      "note": "仅用于演示信息架构、检索与筛选。不是实际发布内容，不能作为法律依据、教育事实或报名通知。"
+    }
+  },
+  {
+    "id": "ai",
+    "title": "DEMO｜人工智能教学应用讲座（非真实活动）",
+    "category": "培训研修与讲座",
+    "region": "北京市",
+    "stages": [
+      "初中",
+      "高中"
+    ],
+    "subjects": [
+      "综合"
+    ],
+    "keywords": [
+      "AI",
+      "人工智能",
+      "讲座",
+      "培训"
+    ],
+    "summary": "用于演示数字化主题讲座，不代表真实主办方发布。",
+    "audience": "演示条件：希望了解相关主题的中小学教师，不代表真实招募对象。",
+    "requirements": [
+      "本条仅供筛选和页面演示，不可报名。",
+      "地区、学段和学科为示例条件；实际活动须以原始通知为准。"
+    ],
+    "startsAt": null,
+    "endsAt": null,
+    "registrationDeadline": null,
+    "registrationOpensAt": null,
+    "datesVerified": false,
+    "source": {
+      "mode": "demo",
+      "publisher": null,
+      "originalUrl": null,
+      "checkedAt": null,
+      "verification": "演示数据",
+      "note": "仅用于演示信息架构、检索与筛选。不是实际发布内容，不能作为法律依据、教育事实或报名通知。"
+    }
+  },
+  {
+    "id": "project",
+    "title": "DEMO｜教育教学课题申报（非真实活动）",
+    "category": "课题申报与成果评选",
+    "region": "上海市",
+    "stages": [
+      "小学",
+      "初中",
+      "高中"
+    ],
+    "subjects": [
+      "不限"
+    ],
+    "keywords": [
+      "课题",
+      "申报",
+      "成果"
+    ],
+    "summary": "用于演示课题条件展示，不是真实申报通知。",
+    "audience": "演示条件：希望了解相关主题的中小学教师，不代表真实招募对象。",
+    "requirements": [
+      "本条仅供筛选和页面演示，不可报名。",
+      "地区、学段和学科为示例条件；实际活动须以原始通知为准。"
+    ],
+    "startsAt": null,
+    "endsAt": null,
+    "registrationDeadline": null,
+    "registrationOpensAt": null,
+    "datesVerified": false,
+    "source": {
+      "mode": "demo",
+      "publisher": null,
+      "originalUrl": null,
+      "checkedAt": null,
+      "verification": "演示数据",
+      "note": "仅用于演示信息架构、检索与筛选。不是实际发布内容，不能作为法律依据、教育事实或报名通知。"
+    }
+  },
+  {
+    "id": "research",
+    "title": "DEMO｜英语教学交流（非真实活动）",
+    "category": "学术交流与教研活动",
+    "region": "全国",
+    "stages": [
+      "初中",
+      "高中"
+    ],
+    "subjects": [
+      "英语"
+    ],
+    "keywords": [
+      "交流",
+      "教研",
+      "学术"
+    ],
+    "summary": "用于演示学科教研筛选，不代表真实会议安排。",
+    "audience": "演示条件：希望了解相关主题的中小学教师，不代表真实招募对象。",
+    "requirements": [
+      "本条仅供筛选和页面演示，不可报名。",
+      "地区、学段和学科为示例条件；实际活动须以原始通知为准。"
+    ],
+    "startsAt": null,
+    "endsAt": null,
+    "registrationDeadline": null,
+    "registrationOpensAt": null,
+    "datesVerified": false,
+    "source": {
+      "mode": "demo",
+      "publisher": null,
+      "originalUrl": null,
+      "checkedAt": null,
+      "verification": "演示数据",
+      "note": "仅用于演示信息架构、检索与筛选。不是实际发布内容，不能作为法律依据、教育事实或报名通知。"
+    }
+  }
+]
